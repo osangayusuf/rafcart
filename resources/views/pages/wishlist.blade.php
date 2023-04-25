@@ -27,7 +27,7 @@
                             Out of stock
                         </span>
                         @endif
-                        </span></p>
+                    </p>
                 </div>
                 <div class="text-primary text-lg font-semibold">${{ $product->price }}.00</div>
                 <a href="/cart/{{ auth()->user()->id }}/add/{{ $product->id }}"

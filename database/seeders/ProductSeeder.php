@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Kitchen Chair',
                 'price' => '30000',
-                'category' => 'kitchen',
+                'category_id' => 1,
                 'brand' => 'No limits',
                 'logo' => '/images/products/product8.jpg',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatem quam consectetur dicta, incidunt maiores earum consequuntur recusandae temporibus libero sequi, quis animi soluta quisquam distinctio explicabo delectus! Provident, rerum.',
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Kitchen Table',
                 'price' => '55000',
-                'category' => 'kitchen',
+                'category_id' => 1,
                 'brand' => 'Larrys',
                 'logo' => '/images/products/product5.jpg',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatem quam consectetur dicta, incidunt maiores earum consequuntur recusandae temporibus libero sequi, quis animi soluta quisquam distinctio explicabo delectus! Provident, rerum.',
@@ -50,27 +50,26 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Italian Sofa',
                 'price' => '300000',
-                'category' => 'living room',
+                'category_id' => 2,
                 'brand' => 'No limits',
                 'logo' => '/images/products/product1.jpg',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptatem quam consectetur dicta, incidunt maiores earum consequuntur recusandae temporibus libero sequi, quis animi soluta quisquam distinctio explicabo delectus! Provident, rerum.',
                 'materials' => 'wood,latex',
                 'weight' => '180',
-                'size_xs' => '30',
-                'size_s' => '55',
+                'size_xs' => '0',
+                'size_s' => '0',
                 'size_m' => '0',
-                'size_l' => '25',
-                'size_xl' => '10',
+                'size_l' => '0',
+                'size_xl' => '0',
                 'sku' => 'RAF0003'
             ]
         ];
-
 
         foreach ($products as $product) {
             Product::create([
                 'name' => $product['name'],
                 'price' => $product['price'],
-                'category' => $product['category'],
+                'category_id' => $product['category_id'],
                 'brand' => $product['brand'],
                 'logo' => $product['logo'],
                 'description' => $product['description'],

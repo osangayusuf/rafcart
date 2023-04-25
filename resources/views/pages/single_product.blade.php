@@ -10,7 +10,7 @@
             <p class="text-gray-600 font-medium">Product</p>
         </div>
         <!-- ./breadcrumb -->
-    
+
         <!-- product-detail -->
         <div class="container grid grid-cols-2 gap-6">
             <div>
@@ -24,7 +24,7 @@
                     <img src="{{asset('storage/' . $product->logo)}}" alt="product2" class="w-full cursor-pointer border">
                 </div>
             </div>
-    
+
             <div>
                 <h2 class="text-3xl font-medium uppercase mb-2">{{$product->name}}</h2>
                 <div class="flex items-center mb-4">
@@ -40,7 +40,15 @@
                 <div class="space-y-2">
                     <p class="text-gray-800 font-semibold space-x-2">
                         <span>Availability: </span>
-                        <span class="text-green-600">In Stock</span>
+                            @if (($product->size_xs + $product->size_s + $product->size_m + $product->size_l + $product->size_xl) > 0)
+                            <span class="text-green-600">
+                                In Stock
+                            </span>
+                            @else
+                            <span class="text-red-600">
+                                Out of stock
+                            </span>
+                            @endif
                     </p>
                     <p class="space-x-2">
                         <span class="text-gray-800 font-semibold">Brand: </span>
@@ -48,7 +56,7 @@
                     </p>
                     <p class="space-x-2">
                         <span class="text-gray-800 font-semibold">Category: </span>
-                        <span class="text-gray-600">{{$product->category}}</span>
+                        <span class="text-gray-600">{{$product->category->name}}</span>
                     </p>
                     <p class="space-x-2">
                         <span class="text-gray-800 font-semibold">SKU: </span>
@@ -59,11 +67,11 @@
                     <p class="text-xl text-primary font-semibold">${{$product->price}}.00</p>
                     <p class="text-base text-gray-400 line-through">${{$product->price * 1.25}}.00</p>
                 </div>
-    
+
                 <p class="mt-4 text-gray-600">
                  {{$product->description}}
                 </p>
-    
+
                 <div class="pt-4">
                     <h3 class="text-sm text-gray-800 uppercase mb-1">Size</h3>
                     <div class="flex items-center gap-2">
@@ -94,7 +102,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="pt-4">
                     <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>
                     <div class="flex items-center gap-2">
@@ -116,10 +124,10 @@
                                 class="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
                                 style="background-color: #fff;"></label>
                         </div>
-    
+
                     </div>
                 </div>
-    
+
                 <div class="mt-4">
                     <h3 class="text-sm text-gray-800 uppercase mb-1">Quantity</h3>
                     <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
@@ -129,18 +137,20 @@
                     </div>
                     <div class="text-xs text-gray-500 pt-4 ">{{$product->size_xs + $product->size_s + $product->size_m + $product->size_l + $product->size_xl}} left</div>
                 </div>
-    
+
                 <div class="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
-                    <a href="#"
+                    @auth
+                    <a href="/cart/{{ auth()->user()->id }}/add/{{ $product->id }}"
                         class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-transparent hover:text-primary transition">
                         <i class="fa-solid fa-bag-shopping"></i> Add to cart
                     </a>
-                    <a href="#"
+                    <a href="/wishlist/{{ auth()->user()->id }}/add/{{ $product->id }}"
                         class="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
                         <i class="fa-solid fa-heart"></i> Wishlist
                     </a>
+                    @endauth
                 </div>
-    
+
                 <div class="flex gap-3 mt-4">
                     <a href="#"
                         class="text-gray-400 hover:text-gray-500 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
@@ -158,16 +168,16 @@
             </div>
         </div>
         <!-- ./product-detail -->
-    
+
         <!-- description -->
         <div class="container pb-16">
             <h3 class="uppercase border-b border-gray-200 font-roboto text-gray-800 pb-3 font-medium">Product details</h3>
             <div class="w-3/5 pt-6">
                 <div class="text-gray-600">
                     <p>{{$product->description}}</p>
-                  
+
                 </div>
-    
+
                 <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
                     <tr>
                         <th class="py-2 px-4 border border-gray-300 w-40 font-medium">Color</th>

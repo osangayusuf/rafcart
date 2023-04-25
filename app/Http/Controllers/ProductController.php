@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use League\Flysystem\DirectoryListing;
@@ -13,7 +14,7 @@ class ProductController extends Controller
 
 
         return view('pages.index', [
-            'categories' => Product::distinct()->get(['category']),
+            'categories' => Category::all(),
             'new_arrivals' => Product::latest()->take(4)->get(),
             'recommended' => Product::inRandomOrder()->take(8)->get(),
         ]);
@@ -23,7 +24,7 @@ class ProductController extends Controller
     public function shop(Request $request) {
         return view('pages.shop', [
             'products' => Product::latest()->filter($request->only(['category', 'brand', 'min', 'max', 'size', 'search']))->paginate(12),
-            'categories' => Product::distinct()->get(['category']),
+            'categories' => Category::all(),
             'brands' => Product::distinct()->get(['brand'])
         ]);
     }

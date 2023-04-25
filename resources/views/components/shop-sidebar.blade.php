@@ -1,6 +1,6 @@
             @props(['categories', 'brands'])
-            
-        <form method="GET" action="/shop">    
+
+        <form method="GET" action="/shop">
             <!-- sidebar -->
             <div class="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hidden">
                 <div class="divide-y divide-gray-200 space-y-5">
@@ -9,16 +9,16 @@
                         <div class="space-y-2">
                             @foreach ($categories as $category)
                             <div class="flex items-center">
-                                <input type="checkbox" name="category[]" value="{{$category->category}}" id="{{$category->category}}"
+                                <input type="checkbox" name="category[]" value="{{$category->id}}" id="{{$category->name}}"
                                     class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                <label for="{{$category->category}}" class="text-gray-600 ml-3 cusror-pointer capitalize">{{$category->category}}</label>
+                                <label for="{{$category->name}}" class="text-gray-600 ml-3 cusror-pointer capitalize">{{$category->name}}</label>
                                 <div class="ml-auto text-gray-600 text-sm">(15)</div>
                             </div>
                             @endforeach
-                         
+
                         </div>
                     </div>
-    
+
                     <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Brands</h3>
                         <div class="space-y-2">
@@ -29,10 +29,10 @@
                                 <label for="{{$brand->brand}}" class="text-gray-600 ml-3 cusror-pointer capitalize">{{$brand->brand}}</label>
                                 <div class="ml-auto text-gray-600 text-sm">(15)</div>
                             </div>
-                            @endforeach                      
+                            @endforeach
                         </div>
                     </div>
-    
+
                     <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Price</h3>
                         <div class="mt-4 flex items-center">
@@ -45,7 +45,7 @@
                                 placeholder="max">
                         </div>
                     </div>
-    
+
                     <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">size</h3>
                         <div class="flex items-center gap-2">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     {{-- <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>
                         <div class="flex items-center gap-2">
@@ -97,7 +97,7 @@
                                 <label for="white"
                                     class="border border-gray-200 rounded-sm h-6 w-6  cursor-pointer shadow-sm block"
                                     style="background-color: #fff;"></label>
-                            </div>    
+                            </div>
                         </div>
                     </div> --}}
                     <div>
@@ -107,7 +107,7 @@
                             Filter
                         </button>
                     </div>
-    
+
                 </div>
             </div>
         </form>

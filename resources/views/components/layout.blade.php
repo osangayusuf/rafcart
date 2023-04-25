@@ -87,21 +87,21 @@
                 <!-- dropdown -->
                 <div
                     class="absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible">
-                    <a href="shop?category%5B%5D=kitchen" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="shop?category%5B%5D=1" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <img src="{{asset('storage/images/icons/restaurant.svg')}}" alt="sofa" class="w-5 h-5 object-contain">
                         <span class="ml-6 text-gray-600 text-sm">Kitchen</span>
                     </a>
-                    <a href="shop?category%5B%5D=living+room" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="shop?category%5B%5D=2" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <img src="{{asset('storage/images/icons/sofa.svg')}}" alt="terrace" class="w-5 h-5 object-contain">
                         <span class="ml-6 text-gray-600 text-sm">Living Room</span>
                     </a>
-                    <a href="shop?category%5B%5D=office" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
-                        <img src="{{asset('storage/images/icons/office.svg')}}" alt="bed" class="w-5 h-5 object-contain">
-                        <span class="ml-6 text-gray-600 text-sm">Office</span>
-                    </a>
-                    <a href="shop?category%5B%5D=outdoor" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                    <a href="shop?category%5B%5D=3" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
                         <img src="{{asset('storage/images/icons/outdoor-cafe.svg')}}" alt="office" class="w-5 h-5 object-contain">
                         <span class="ml-6 text-gray-600 text-sm">Outdoor</span>
+                    </a>
+                    <a href="shop?category%5B%5D=4" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                        <img src="{{asset('storage/images/icons/office.svg')}}" alt="bed" class="w-5 h-5 object-contain">
+                        <span class="ml-6 text-gray-600 text-sm">Office</span>
                     </a>
                 </div>
             </div>
@@ -162,27 +162,6 @@
             </div>
 
             <div class="col-span-2 grid grid-cols-2 gap-8">
-                <div class="grid grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Solutions</h3>
-                        <div class="mt-4 space-y-4">
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Marketing</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Analitycs</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Commerce</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Insights</a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Support</h3>
-                        <div class="mt-4 space-y-4">
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Pricing</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Documentation</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">Guides</a>
-                            <a href="#" class="text-base text-gray-500 hover:text-gray-900 block">API Status</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="grid grid-cols-2 gap-8">
                     <div>
                         <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Solutions</h3>
