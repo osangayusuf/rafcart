@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Wishlist;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -77,51 +78,46 @@ class UserController extends Controller
 
     // SHOW USER WISHLIST PAGE
     public function showWishlist (User $user) {
-        $wishlist_ids = explode(',', $user['wishlist']);
-
         return view('pages.wishlist', [
-            'user' => $user,
-            'wishlist_products' => Product::all()->find($wishlist_ids)
+            'wishlist' => $user->wishlist
         ]);
     }
 
     // ADD PRODUCT TO USERS WISHLIST
     public function addToWishlist(User $user, Product $product){
-        if($user['wishlist']) {
-            $user['wishlist'] = $user['wishlist'] . ',' . $product['id'];
-            $wishlist = array_unique(explode(',', $user['wishlist']));
-            $user['wishlist'] = join(',',$wishlist);
-        } else {
-            $user['wishlist'] = $product['id'];
-        }
+        $wishlist = [
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+        ];
 
-        $user->save();
+        Wishlist::create($wishlist);
 
         return redirect('/wishlist/' . $user->id)->with('message', $product->name . ' added to wishlist');
     }
 
     // SHOW USER CART PAGE
     public function showCart (User $user) {
-        $cart_ids = explode(',', $user['cart']);
-
         return view('pages.cart', [
-            'user' => $user,
-            'cart_items' => Product::all()->find($cart_ids)
+            'cart' => $user->cart,
         ]);
     }
 
     // ADD PRODUCT TO USERS CART
     public function addToCart(User $user, Product $product){
-        if($user['cart']) {
-            $user['cart'] = $user['cart'] . ',' . $product['id'];
-            $cart = array_unique(explode(',', $user['cart']));
-            $user['cart'] = join(',',$cart);
-        } else {
-            $user['cart'] = $product['id'];
-        }
+        $cart = [
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+        ];
 
-        $user->save();
+        Cart::create($cart);
 
         return redirect('/cart/' . $user->id)->with('message', $product->name . ' added to cart');
+    }
+
+    // DELETE PRODUCT FROM USERS CART
+    public function deleteFromCart(User $user, Cart $cart){
+        $cart->delete();
+
+        return redirect('/cart/' . $user->id)->with('message', 'Product deleted from cart');
     }
 }

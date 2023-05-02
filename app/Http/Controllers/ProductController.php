@@ -11,8 +11,6 @@ class ProductController extends Controller
 {
     // SHOW HOME PAGE
     public function index() {
-
-
         return view('pages.index', [
             'categories' => Category::all(),
             'new_arrivals' => Product::latest()->take(4)->get(),

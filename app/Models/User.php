@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Review;
+use App\Models\Cart;
+use App\Models\Wishlist;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class User extends Authenticatable
 {
@@ -42,4 +47,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function wishlist():HasMany
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function cart():HasMany
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+
+    public function reviews():HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }
+

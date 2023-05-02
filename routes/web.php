@@ -36,13 +36,16 @@ Route::controller(UserController::class)->group(function () {
         // Show wishlist page
         Route::get('/wishlist/{user}', 'showWishlist');
 
-        // Add product to wishlist/cart
+        // Add product to wishlist
         Route::get('/wishlist/{user}/add/{product}', 'addToWishlist');
 
          // Show cart page
          Route::get('/cart/{user}', 'showCart');
 
-         // Add product to wishlist/cart
+         // Delete product from cart
+         Route::post('/cart/{user}/delete/{cart}', 'deleteFromCart');
+
+         // Add product to cart
          Route::get('/cart/{user}/add/{product}', 'addToCart');
 
         // Log user out
@@ -62,35 +65,4 @@ Route::controller(ProductController::class)->group(function () {
     // Show product page
     Route::get('/product/{product}', 'showProduct');
 });
-// // SHOW HOMEPAGE
-// Route::get('/', [ProductController::class, 'index']);
 
-// // SHOW SHOP PAGE
-// Route::get('/shop', [ProductController::class, 'shop']);
-
-// // SHOW PRODUCT PAGE
-// Route::get('/product/{product}', [ProductController::class, 'showProduct']);
-
-// // SHOW LOGIN PAGE
-// Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
-
-// // AUTHENTICATE USER DETAILS
-// Route::post('/login/authenticate', [UserController::class, 'authenticate']);
-
-// // SHOW REGISTER PAGE
-// Route::get('/register', [UserController::class, 'register']);
-
-// // STORE USER DETAILS
-// Route::post('/register', [UserController::class, 'store']);
-
-// // LOG USER OUT
-// Route::post('/logout', [UserController::class, 'logout']);
-
-// // SHOW ACCOUNT PAGE
-// Route::get('/account/{user}', [UserController::class, 'showAccount']);
-
-// // SHOW WISHLIST PAGE
-// Route::get('/wishlist/{user}', [UserController::class, 'showWishlist']);
-
-// // ADD PRODUCT TO WISHLIST/CART
-// Route::get('/wishlist/{user}/add/{product}', [UserController::class, 'addToWishlist']);

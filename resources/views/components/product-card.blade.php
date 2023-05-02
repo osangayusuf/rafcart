@@ -36,12 +36,9 @@
             <p class="text-sm text-gray-400 line-through">${{$product->price*1.25}}</p>
         </div>
         <div class="flex items-center">
-            <div class="flex gap-1 text-sm text-yellow-400">
-                <span><i class="fa-solid fa-star"></i></span>
-                <span><i class="fa-solid fa-star"></i></span>
-                <span><i class="fa-solid fa-star"></i></span>
-                <span><i class="fa-solid fa-star"></i></span>
-                <span><i class="fa-solid fa-star"></i></span>
+            <div class="flex gap-1 text-sm">
+                <span class="text-yellow-400"><i class="fa-solid fa-star"></i></span>
+                <span class="text-gray-400"><i class="fa-solid fa-star"></i></span>
             </div>
             <div class="text-xs text-gray-500 ml-3">(150)</div>
         </div>

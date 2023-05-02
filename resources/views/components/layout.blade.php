@@ -51,7 +51,9 @@
                     <div class="text-xs leading-3">Wishlist</div>
                     <div
                         class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-                        5
+                        @if(auth()->user()->wishlist)
+                            {{ auth()->user()->wishlist->count() }}
+                        @endif
                     </div>
                 </a>
                 <a href="/cart/{{ auth()->user()->id }}" class="text-center text-gray-700 hover:text-primary transition relative">
@@ -61,7 +63,10 @@
                     <div class="text-xs leading-3">Cart</div>
                     <div
                         class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
-                        2</div>
+                        @if(auth()->user()->cart)
+                            {{ auth()->user()->cart->count() }}
+                        @endif
+                    </div>
                 </a>
                 <a href="/account/{{auth()->user()->id}}" class="text-center text-gray-700 hover:text-primary transition relative">
                     <div class="text-2xl">
