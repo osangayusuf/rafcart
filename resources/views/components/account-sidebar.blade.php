@@ -13,9 +13,9 @@
 
             <div class="mt-6 bg-white shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
                 <div class="space-y-1 pl-8">
-                    <a href="#" class="block font-medium capitalize transition">
+                    <a href="/account/{{ $auth()->id }}" class=@if(Route::currentRouteName() == 'account') "text-primary @endif block font-medium capitalize transition">
                         <span class="absolute -left-8 top-0 text-base">
-                            <i class="fa-regular fa-address-card"></i>
+                            <i class="fa-regular fa-user"></i>
                         </span>
                         Manage account
                     </a>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="/wishlist/{{ auth()->user()->id }}" class="relative text-primary block font-medium capitalize transition">
+                    <a href="/wishlist/{{ auth()->user()->id }}" class=@if(Route::currentRouteName() == 'wishlist') "text-primary @endif relative block font-medium capitalize transition">
                         <span class="absolute -left-8 top-0 text-base">
                             <i class="fa-regular fa-heart"></i>
                         </span>
@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="space-y-1 pl-8 pt-4">
-                    <a href="/cart/{{ auth()->user()->id }}" class="relative block font-medium capitalize transition">
+                    <a href="/cart/{{ auth()->user()->id }}" class=@if(Route::currentRouteName() == 'cart') "text-primary @endif relative block font-medium capitalize transition">
                         <span class="absolute -left-8 top-0 text-base">
                             <i class="fa-regular fa-bag-shopping"></i>
                         </span>
