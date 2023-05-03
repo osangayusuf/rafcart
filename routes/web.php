@@ -31,16 +31,16 @@ Route::controller(UserController::class)->group(function () {
 
     Route::middleware('auth')->group(function () {
         // Show account page
-        Route::get('/account/{user}', 'showAccount');
+        Route::get('/account/{user}', 'showAccount')->name('account');
 
         // Show wishlist page
-        Route::get('/wishlist/{user}', 'showWishlist');
+        Route::get('/wishlist/{user}', 'showWishlist')->name('wishlist');
 
         // Add product to wishlist
         Route::get('/wishlist/{user}/add/{product}', 'addToWishlist');
 
          // Show cart page
-         Route::get('/cart/{user}', 'showCart');
+         Route::get('/cart/{user}', 'showCart')->name('cart');
 
          // Delete product from cart
          Route::post('/cart/{user}/delete/{cart}', 'deleteFromCart');
