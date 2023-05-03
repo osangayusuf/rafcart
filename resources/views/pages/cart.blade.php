@@ -11,14 +11,15 @@
         <h1>My Cart</h1>
 
         @foreach ($cart as $cart)
+            @php $product = $cart->product @endphp
         <div class="flex items-center justify-between border gap-6 p-4 border-gray-200 rounded">
             <div class="w-28">
-                <img src="{{ asset('/storage' . $cart->product->logo) }}" alt="{{ $cart->product->logo }}" class="w-full">
+                <img src="{{ asset('/storage' . $product->logo) }}" alt="{{ $product->logo }}" class="w-full">
             </div>
             <div class="w-1/3">
-                <h2 class="text-gray-800 text-xl font-medium uppercase">{{ $cart->product->name }}</h2>
+                <h2 class="text-gray-800 text-xl font-medium uppercase">{{ $product->name }}</h2>
                 <p class="text-gray-500 text-sm">Availability:
-                    @if (($cart->product->size_xs + $cart->product->size_s + $cart->product->size_m + $cart->product->size_l + $cart->product->size_xl) > 0)
+                    @if (($product->size_xs + $product->size_s + $product->size_m + $product->size_l + $product->size_xl) > 0)
                     <span class="text-green-600">
                         In Stock
                     </span>
@@ -29,7 +30,7 @@
                     @endif
                     </span></p>
             </div>
-            <div class="text-primary text-lg font-semibold">${{ $cart->product->price }}.00</div>
+            <div class="text-primary text-lg font-semibold">${{ $product->price }}.00</div>
 
             <div class="text-gray-600 cursor-pointer hover:text-primary">
                 <form action="/cart/{{ auth()->user()->id }}/delete/{{ $cart->id }}" method="POST">
