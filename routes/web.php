@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,21 +37,6 @@ Route::controller(UserController::class)->group(function () {
         // Show account page
         Route::get('/account/{user}', 'showAccount')->name('account');
 
-        // Show wishlist page
-        Route::get('/wishlist/{user}', 'showWishlist')->name('wishlist');
-
-        // Add product to wishlist
-        Route::get('/wishlist/{user}/add/{product}', 'addToWishlist');
-
-         // Show cart page
-         Route::get('/cart/{user}', 'showCart')->name('cart');
-
-         // Delete product from cart
-         Route::post('/cart/{user}/delete/{cart}', 'deleteFromCart');
-
-         // Add product to cart
-         Route::get('/cart/{user}/add/{product}', 'addToCart');
-
         // Log user out
         Route::post('/logout', 'logout');
     });
@@ -57,7 +46,7 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     // Show homepage
     Route::get('/', 'index');
-    Route::get('/home', 'index');
+    Route::redirect('/home', '/', 301);
 
     // Show shop page
     Route::get('/shop', 'shop');
@@ -66,3 +55,10 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{product}', 'showProduct');
 });
 
+Route::middleware('auth')->group(function () {
+    // Cart resource route
+    Route::resource('cart', CartController::class, );
+
+    // Wishlist resource route
+    Route::resource('wishlist', WishlistController::class);
+});

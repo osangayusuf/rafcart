@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Wishlist;
 use App\Models\Cart;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,49 +76,5 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
-
-    // SHOW USER WISHLIST PAGE
-    public function showWishlist (User $user) {
-        return view('pages.wishlist', [
-            'wishlist' => Wishlist::where('user_id', $user->id)->with('product')->get()
-        ]);
-    }
-
-    // ADD PRODUCT TO USERS WISHLIST
-    public function addToWishlist(User $user, Product $product){
-        $wishlist = [
-            'user_id' => $user->id,
-            'product_id' => $product->id,
-        ];
-
-        Wishlist::create($wishlist);
-
-        return redirect('/wishlist/' . $user->id)->with('message', $product->name . ' added to wishlist');
-    }
-
-    // SHOW USER CART PAGE
-    public function showCart (User $user) {
-        return view('pages.cart', [
-            'cart' => Cart::where('user_id', $user->id)->with('product')->get(),
-        ]);
-    }
-
-    // ADD PRODUCT TO USERS CART
-    public function addToCart(User $user, Product $product){
-        $cart = [
-            'user_id' => $user->id,
-            'product_id' => $product->id,
-        ];
-
-        Cart::create($cart);
-
-        return redirect('/cart/' . $user->id)->with('message', $product->name . ' added to cart');
-    }
-
-    // DELETE PRODUCT FROM USERS CART
-    public function deleteFromCart(User $user, Cart $cart){
-        $cart->delete();
-
-        return redirect('/cart/' . $user->id)->with('message', 'Product deleted from cart');
-    }
 }
+
