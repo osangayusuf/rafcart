@@ -44,7 +44,7 @@
 
             <div class="flex items-center space-x-4">
                 @auth
-                <a href="/wishlist/{{ auth()->user()->id }}" class="text-center text-gray-700 hover:text-primary transition relative">
+                <a href="/wishlist" class="text-center text-gray-700 hover:text-primary transition relative">
                     <div class="text-2xl">
                         <i class="fa-regular fa-heart"></i>
                     </div>
@@ -56,7 +56,7 @@
                         @endif
                     </div>
                 </a>
-                <a href="/cart/{{ auth()->user()->id }}" class="text-center text-gray-700 hover:text-primary transition relative">
+                <a href="/cart" class="text-center text-gray-700 hover:text-primary transition relative">
                     <div class="text-2xl">
                         <i class="fa-solid fa-bag-shopping"></i>
                     </div>

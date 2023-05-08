@@ -11,17 +11,23 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </a>
             @auth
-            <a href="/cart/{{ auth()->user()->id }}/add/{{ $product->id }}"
+            <form action="/cart" method="POST"
                 class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
-                title="Add to cart">
-                <i class="fa-solid fa-shopping-cart"></i>
-            </a>
+                title="Add to Cart">
+                @csrf
+                <input hidden name="user_id" value="{{ auth()->id() }}">
+                <input hidden name="product_id" value="{{ $product->id }}">
+                <button class="fa-solid fa-shopping-cart" type="submit"></button>
+            </form>
 
-            <a href="/wishlist/{{ auth()->user()->id }}/add/{{ $product->id }}"
+            <form action="/wishlist" method="POST"
                 class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition"
                 title="Add to wishlist">
-                <i class="fa-solid fa-heart"></i>
-            </a>
+                @csrf
+                <input hidden name="user_id" value="{{ auth()->id() }}">
+                <input hidden name="product_id" value="{{ $product->id }}">
+                <button class="fa-solid fa-heart" type="submit"></button>
+            </form>
             @endauth
         </div>
     </div>
@@ -44,10 +50,14 @@
         </div>
     </div>
     @auth
-    <a href="/cart/{{ auth()->user()->id }}/add/{{ $product->id }}"
-        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
-        to cart
-    </a>
+    <form action="/cart" method="POST">
+        @csrf
+        <input hidden name="user_id" value="{{ auth()->id() }}">
+        <input hidden name="product_id" value="{{ $product->id }}">
+        <button type="submit" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">
+            Add to cart
+        </button>
+    </form>
     @endauth
 </div>
 

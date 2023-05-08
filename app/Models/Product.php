@@ -23,7 +23,7 @@ class Product extends Model
                     ->orWhere('brand', 'like', '%' . $filters['search'] . '%')
                     ->orWhere('category', 'like', '%' . $filters['search'] . '%')
                     ->orWhere('description', 'like', '%' . $filters['search'] . '%');
-        }
+                }
 
         if($filters['category'] ?? false) {
             $query->where('category_id', $filters['category']);
