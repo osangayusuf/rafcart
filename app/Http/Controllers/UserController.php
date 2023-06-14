@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
-use App\Models\Wishlist;
-use App\Models\Cart;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,12 +15,8 @@ class UserController extends Controller
     }
 
     // STORE USER DETAILS
-    public function store (Request $request) {
-        $formFields = $request->validate([
-            'name' => 'min:3|max:64|required',
-            'email' => 'email|required|unique:users,email',
-            'password' => 'required|confirmed|min:6'
-        ]);
+    public function store (CreateUserRequest $request) {
+        $formFields = $request->validated();
 
         $formFields['password'] = bcrypt($formFields['password']);
 
@@ -42,15 +35,12 @@ class UserController extends Controller
 
     // AUTHENTICATE USER DETAILS
     public function authenticate (Request $request) {
-        // dd($request->post());
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
-        $remember = $request->remember ?? false;
-
-        if(auth()->attempt($credentials, $remember)) {
+        if(auth()->attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             return redirect('/')->with('message', 'Login successful');
