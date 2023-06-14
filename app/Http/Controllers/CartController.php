@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
-use GuzzleHttp\Psr7\Message;
-use PhpParser\Node\Stmt\TryCatch;
+use App\Http\Requests\AddUserItemRequest;
+
 
 class CartController extends Controller
 {
@@ -35,18 +35,15 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddUserItemRequest $request)
     {
-        $cart = $request->validate([
-            'user_id' => 'integer',
-            'product_id' => 'integer'
-        ]);
+        $cart = $request->validated();
 
         $product = Product::find($cart['product_id']);
 
         $alreadyincart = Cart::where('user_id', $cart['user_id'])->where('product_id', $cart['product_id'])->first();
 
-        if($alreadyincart) {
+        if(isset($alreadyincart)) {
             return redirect()->route('cart.index')->with('message', $product->name . ' already in cart');
         } else {
             Cart::create($cart);
@@ -84,6 +81,6 @@ class CartController extends Controller
     public function destroy(string $id) {
         Cart::destroy($id);
 
-        return redirect('/cart')->with('message', 'Deleted successfully');
+        return back()->with('message', 'Deleted successfully');
     }
 }

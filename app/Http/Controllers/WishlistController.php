@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\AddUserItemRequest;
 
 class WishlistController extends Controller
 {
@@ -31,18 +31,15 @@ class WishlistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AddUserItemRequest $request)
     {
-        $wishlist = $request->validate([
-            'user_id' => 'integer',
-            'product_id' => 'integer'
-        ]);
+        $wishlist = $request->validated();
 
         $product = Product::find($wishlist['product_id']);
 
         $alreadyinwishlist = Wishlist::where('user_id', $wishlist['user_id'])->where('product_id', $wishlist['product_id'])->first();
 
-        if($alreadyinwishlist) {
+        if(isset($alreadyinwishlist)) {
             return redirect()->route('wishlist.index')->with('message', $product->name . ' already in wishlist');
         } else {
             Wishlist::create($wishlist);
@@ -82,6 +79,6 @@ class WishlistController extends Controller
     {
         Wishlist::destroy($id);
 
-        return redirect('/wishlist')->with('message', 'Deleted successfully');
+        return back()->with('message', 'Deleted successfully');
     }
 }
