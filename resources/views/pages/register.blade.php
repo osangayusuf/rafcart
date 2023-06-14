@@ -13,7 +13,8 @@
                         <label for="name" class="text-gray-600 mb-2 block">Full Name</label>
                         <input type="text" name="name" id="name"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="John Doe">
+                            placeholder="John Doe"
+                            value="{{ old('name') }}">
                         @error('name')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
@@ -22,7 +23,8 @@
                         <label for="email" class="text-gray-600 mb-2 block">Email address</label>
                         <input type="email" name="email" id="email"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="johndoe@domain.com">
+                            placeholder="johndoe@domain.com"
+                            value="{{ old('email') }}">
                         @error('email')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
