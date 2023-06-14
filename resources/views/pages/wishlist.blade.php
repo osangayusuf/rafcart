@@ -21,7 +21,7 @@
                             add to cart
                         </button>
                     </form>
-                    <form action="/cart/{{ $wishlist->id }}" method="POST">
+                    <form action="/wishlist/{{ $wishlist->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-gray-600 cursor-pointer hover:text-primary">
