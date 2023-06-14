@@ -12,7 +12,8 @@
                         <label for="email" class="text-gray-600 mb-2 block">Email address</label>
                         <input type="email" name="email" id="email"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="johndoe@domain.com">
+                            placeholder="johndoe@domain.com"
+                            value="{{ old('email') }}">
                         @error('email')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
@@ -55,7 +56,7 @@
             <!-- ./login with -->
 
             <p class="mt-4 text-center text-gray-600">
-                Don't have account? 
+                Don't have account?
                 <a href="/register" class="text-primary">
                     Register now
                 </a>
