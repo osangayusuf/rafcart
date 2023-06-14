@@ -15,13 +15,37 @@ class Product extends Model
 {
     use HasFactory;
 
+    public function scopeFind ($query, $product_ids) {
+        foreach ($product_ids as $id) {
+            $query->where('id', '==', $id);
+        }
+    }
 
+    public function category (): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function reviews():HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function wishlist():HasOne
+    {
+        return $this->hasOne(Wishlist::class);
+    }
+
+    public function cart():HasOne
+    {
+        return $this->hasOne(Cart::class);
+    }
 
     public function scopeFilter($query, array $filters) {
         if($filters['search'] ?? false) {
             $query->where('name', 'like', '%' . $filters['search'] . '%')
                     ->orWhere('brand', 'like', '%' . $filters['search'] . '%')
-                    ->orWhere('category', 'like', '%' . $filters['search'] . '%')
+                    // ->orWhere('category', 'like', '%' . $filters['search'] . '%')
                     ->orWhere('description', 'like', '%' . $filters['search'] . '%');
                 }
 
@@ -47,32 +71,5 @@ class Product extends Model
             }
         }
 
-    }
-
-
-    public function scopeFind ($query, $product_ids) {
-        foreach ($product_ids as $id) {
-            $query->where('id', '==', $id);
-        }
-    }
-
-    public function category (): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function reviews():HasMany
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    public function wishlist():HasOne
-    {
-        return $this->hasOne(Wishlist::class);
-    }
-
-    public function cart():HasOne
-    {
-        return $this->hasOne(Cart::class);
     }
 }
