@@ -62,3 +62,7 @@ Route::middleware('auth')->group(function () {
     // Wishlist resource route
     Route::resource('wishlist', WishlistController::class);
 });
+
+Route::fallback(function () {
+    return "Page not found";
+});
