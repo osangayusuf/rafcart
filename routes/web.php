@@ -20,17 +20,20 @@ use Illuminate\Support\Facades\Redirect;
 */
 Route::controller(UserController::class)->group(function () {
     Route::middleware('guest')->group(function () {
-        // Show login page
-        Route::get('/login', 'login')->name('login');
+        Route::prefix('/login')->group(function () {
+            // Show login page
+            Route::get('/', 'login')->name('login');
 
-        // Authenticate user details
-        Route::post('/login/authenticate', 'authenticate');
+            // Authenticate user details
+            Route::post('/authenticate', 'authenticate');
+        });
+        Route::prefix('/register')->group(function () {
+            // Show register page
+            Route::get('/', 'register');
 
-        // Show register page
-        Route::get('/register', 'register');
-
-        // Store user details
-        Route::post('/register', 'store');
+            // Store user details
+            Route::post('/', 'store');
+        });
     });
 
     Route::middleware('auth')->group(function () {
