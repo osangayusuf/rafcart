@@ -21,14 +21,14 @@ class ProductController extends Controller
     // SHOW SHOP PAGE
     public function shop(Request $request) {
         return view('pages.shop', [
-            'products' => Product::latest()->filter($request->only(['category', 'brand', 'min', 'max', 'size', 'search']))->paginate(12),
-            'categories' => Category::all(),
-            'brands' => Product::distinct()->get(['brand'])
+            'products' => Product::latest()->filter($request->only(['category', 'brand', 'min', 'max', 'size', 'search']))->paginate(6),
+            'categories' => Category::withCount('products')->get(),
+            'brands' => Product::distinct()->get('brand')
         ]);
     }
 
     // SHOW SINGLE PRODUCT PAGE
-    public function showProduct(Product $product) {
+    public function productInfo(Product $product) {
         return view('pages.single_product', [
             'product' => $product
         ]);

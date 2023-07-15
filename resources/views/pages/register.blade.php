@@ -3,10 +3,10 @@
     <div class="contain py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
             <h2 class="text-2xl uppercase font-medium mb-1">Create an account</h2>
-            <p class="text-gray-600 mb-6 text-sm">
-                Register for new customer
+            <p class="text-gray-600 mb-6 text-sm capitalize">
+                Register for a new {{env('APP_NAME')}} account
             </p>
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-2">
                     <div>
@@ -27,6 +27,14 @@
                             value="{{ old('email') }}">
                         @error('email')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="profile_image" class="text-gray-600 mb-2 block">Profile Picture <span class="text-primary text-xs">(optional)</span></label>
+                        <input type="file" name="profile_image" id="profile_image"
+                               class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400">
+                        @error('profile_image')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
@@ -73,7 +81,7 @@
             </div>
             <!-- ./login with -->
 
-            <p class="mt-4 text-center text-gray-600">Already have account? <a href="login.html"
+            <p class="mt-4 text-center text-gray-600">Already have account? <a href="{{route('login')}}"
                     class="text-primary">Login now</a></p>
         </div>
     </div>

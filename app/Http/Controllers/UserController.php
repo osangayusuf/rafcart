@@ -18,7 +18,12 @@ class UserController extends Controller
     public function store (CreateUserRequest $request) {
         $formFields = $request->validated();
 
+        $origExt = $request->file('profile_image')->getClientOriginalExtension();
+        $filename = 'profile_image_' . $formFields['name'] . '.' . $origExt;
+        $request->file('profile_image')->storeAs('profile-images', $filename);
+
         $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['profile_image'] = $filename;
 
         $user = User::create($formFields);
 

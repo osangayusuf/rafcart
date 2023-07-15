@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class CreateUserRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => 'required:min:3|max:64',
             'email' => 'email|required|unique:users,email',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6',
+            'profile_image' => ['sometimes','file','image', File::defaults()->max(1024)]
         ];
     }
 }

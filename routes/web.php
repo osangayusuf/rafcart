@@ -29,7 +29,7 @@ Route::controller(UserController::class)->group(function () {
         });
         Route::prefix('/register')->group(function () {
             // Show register page
-            Route::get('/', 'register');
+            Route::get('/', 'register')->name('register');
 
             // Store user details
             Route::post('/', 'store');
@@ -55,7 +55,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/shop', 'shop');
 
     // Show product page
-    Route::get('/product/{product}', 'showProduct');
+    Route::get('/product/{product}', 'productInfo');
 });
 
 Route::middleware('auth')->group(function () {

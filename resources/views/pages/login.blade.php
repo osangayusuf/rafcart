@@ -2,8 +2,8 @@
     <div class="contain py-16">
         <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
             <h2 class="text-2xl uppercase font-medium mb-1">Login</h2>
-            <p class="text-gray-600 mb-6 text-sm">
-                welcome back customer
+            <p class="text-gray-600 mb-6 text-sm capitalize">
+                welcome back to {{env('APP_NAME')}}
             </p>
             <form action="/login/authenticate" method="POST" autocomplete="on">
                 @csrf
@@ -57,7 +57,7 @@
 
             <p class="mt-4 text-center text-gray-600">
                 Don't have account?
-                <a href="/register" class="text-primary">
+                <a href="{{route('register')}}" class="text-primary">
                     Register now
                 </a>
             </p>
