@@ -40,7 +40,6 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-3 gap-6">
-
                     @unless(count($products)==0)
                     @foreach ($products as $product)
                         <x-product-card :product='$product'/>
@@ -49,13 +48,11 @@
                     <h1>No products</h1>
                     @endunless
                 </div>
+                <div class="mt-10">
+                    {{$products->links()}}
+                </div>
             </div>
             <!-- ./products -->
-            <div class="grid justify-items-stretch">
-                <p class="justify-self: end">
-                    {{$products->links()}}
-                </p>
-            </div>
         </div>
         <!-- ./shop wrapper -->
 
